@@ -1,0 +1,3 @@
+I did not use AI on this. I wanted to gain the experience of developing this by hand,
+and work through the problems on my own. Not until later in the class when I have a better
+personal understanding do I intend to use AI. 
