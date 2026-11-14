@@ -1,7 +1,5 @@
-<?php?>
-    <link rel="stylesheet" href="css/styles.css">
-    <img src="/images/airasia.jpg">
-    <div> 
+<?php
+require_once __DIR__.'/includes/header.php';?>    <div> 
     <form action="card-list.php" method="post">
         <label for="username">Username </label>
         <input id="username" name="username" required>
@@ -12,3 +10,4 @@
         <button type="submit"> Login </button>
     </form>
     </div>
+<?php require_once __DIR__.'/includes/footer.php'; ?>

@@ -1,7 +1,6 @@
- <?php?>
-     <link rel="stylesheet" href="css/styles.css">
-    <img src="/images/airasia.jpg">
-
+<?php
+require_once __DIR__.'/includes/header.php';
+require_once __DIR__.'/includes/nav.php';?>
     <form action="card-details.php" method="get">
         <button type="submit"> Previous Page </button> 
     </form>
@@ -19,3 +18,4 @@
         <input id="cardPoints" name="cardPoints" value="2354" required>
     <button type="submit"> Confirm Details </button>
 </form>
+<?php require_once __DIR__.'/includes/footer.php'; ?>
