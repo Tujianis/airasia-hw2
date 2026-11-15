@@ -1,4 +1,5 @@
 <?php
+
 function escapeHtml($v) {return htmlspecialchars((string)$v,ENT_QUOTES,'UTF-8');}
 
 function openDatabase($path = null) {
@@ -15,6 +16,7 @@ function createGiftCard($pdo, $data) {
     $stmt=$pdo->prepare('INSERT INTO giftcard(cardName, cardType, cardValue, points) VALUES(?,?,?,?)');
     $stmt->execute([$data['cardName'],$data['cardType'],$data['cardValue'],$data['cardPoints']]);
     return (int)$pdo->lastInsertId();
+    
 }
 function findOneGiftCard($pdo, $id) {
     $stmt=$pdo->prepare('SELECT * FROM giftcard WHERE cardId=?');
@@ -35,6 +37,7 @@ function findAllGiftCards($pdo) {
     return $rows;
 }
 function updateGiftCard($pdo, $id, $data) {
+    $errors = validateInfo($id, $data['cardName'],$data['cardType'],$data['cardValue'],$data['cardPoints']);
     $stmt=$pdo->prepare("UPDATE giftcard SET cardName=?,cardType=?,cardValue=?,points=? WHERE cardId=?");
     $stmt->execute([$data['cardName'],$data['cardType'],$data['cardValue'],$data['cardPoints'],$id]);
     return $stmt->rowCount()===1;
