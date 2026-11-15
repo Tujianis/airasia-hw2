@@ -7,7 +7,8 @@ require_once __DIR__.'/includes/db.php'?>
     <form action="card-list.php" method="get">
         <button type="submit"> Previous Page </button> 
     </form> 
-   <form action="create" method="post">
+   <form action="card-process.php" name="giftcard" method="post">
+        <input type="hidden" name="form_name" value="giftcard">
         <label for="cardName">Card Name</label>
         <input id="cardName" name="cardName" required>
         <label for="cardType">Card Type</label>

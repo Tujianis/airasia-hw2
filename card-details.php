@@ -19,6 +19,6 @@ require_once __DIR__.'/includes/nav.php';
     <dt>Points</dt>
         <dd><?=escapeHtml($r['points'])?></dd>
 </dl>
-<a class="btn btn-outline-danger" href="card-delete.php?request_id=<?=$id?>">Delete Gift Card</a>
-<a class="btn btn-primary" href="card-update.php?request_id=<?=$id?>">Edit Gift Card</a> </main>
+<a class="btn btn-outline-danger" href="card-delete.php?cardId=<?=$id?>">Delete Gift Card</a>
+<a class="btn btn-primary" href="card-update.php?cardId=<?=$id?>">Edit Gift Card</a> </main>
 <?php require_once __DIR__.'/includes/footer.php'; ?>

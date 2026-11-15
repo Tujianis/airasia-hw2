@@ -12,8 +12,8 @@ function openDatabase($path = null) {
     return $pdo;
 } 
 function createGiftCard($pdo, $data) {
-    $stmt=$pdo->prepare('INSERT INTO giftcard(cardName, cardType, cardValue, points) VALUES(?,?,?,?,?)');
-    $stmt->execute([$data['cardName'],$data['cardType'],$data['cardValue'],$data['points']]);
+    $stmt=$pdo->prepare('INSERT INTO giftcard(cardName, cardType, cardValue, points) VALUES(?,?,?,?)');
+    $stmt->execute([$data['cardName'],$data['cardType'],$data['cardValue'],$data['cardPoints']]);
     return (int)$pdo->lastInsertId();
 }
 function findOneGiftCard($pdo, $id) {
@@ -35,14 +35,13 @@ function findAllGiftCards($pdo) {
     return $rows;
 }
 function updateGiftCard($pdo, $id, $data) {
-    $stmt=$pdo->prepare("UPDATE giftcard SET cardName=?,cardType=?,cardValue=?,points=? WHERE request_id=?");
-    $stmt->execute([$data['cardName'],$data['cardType'],$data['cardValue'],$data['points'],$id]);
+    $stmt=$pdo->prepare("UPDATE giftcard SET cardName=?,cardType=?,cardValue=?,points=? WHERE cardId=?");
+    $stmt->execute([$data['cardName'],$data['cardType'],$data['cardValue'],$data['cardPoints'],$id]);
     return $stmt->rowCount()===1;
 }
 function deleteGiftCard($pdo, $id) {
-    $stmt=$pdo->prepare("DELETE giftcard WHERE request_id=?");
+    $stmt=$pdo->prepare("DELETE FROM giftcard WHERE cardId=?");
     $stmt->execute([$id]);
     return $stmt->rowCount()===1;
 }
 ?>
-
