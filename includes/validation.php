@@ -45,4 +45,30 @@ function validateCreate ($name, $type, $value, $points){
     }
     return $errors;
 }
+
+function validateCustomer($username, $firstname, $lastname, $role, $password){
+    $errors=[];
+    $username = trim($username);
+    $firstname = trim($firstname);
+    $lastname = trim($lastname);
+    $role = trim($role);
+    $password = trim($password);
+    if(!$username || strlen($username) > 100){
+        $errors[]="Username is required and must be less than 100 characters";
+    }
+    if(!$firstname || strlen($firstname) > 100){
+        $errors[]="First Name is required and must be less than 100 characters";
+    }
+    if(!$lastname || strlen($lastname) > 100){
+        $errors[]="Last name is required and must be less than 100 characters";
+    }
+    if(!$role || !in_array($role, array('Customer', 'Admin'), true)){
+        echo $role;
+        $errors[]="Role must be either Customer or Admin";
+    }
+    if(!$password || strlen($password) <= 8 || strlen($password) > 100){
+        $errors[]="Password must be at least 8 characters long";
+    }
+    return $errors;
+}
 ?>

@@ -53,5 +53,31 @@ function findUserById($pdo, $id) {
     $user = $stmt->fetch();
     return $user;
 }
+function createUser($pdo, $data){
+    $stmtCheck = $pdo->prepare('SELECT userId FROM user WHERE username=?');
+    $stmtCheck->execute([$data['username']]);
+    if($stmtCheck->fetch()){
+        http_response_code(400);
+        exit("Account with same username already exists");
+    } else {
+    $stmt=$pdo->prepare('INSERT INTO user(username, role, firstname, lastname, password) VALUES (?,?,?,?,?)');
+    $stmt->execute([$data['username'], $data['role'], $data['firstname'], $data['lastname'], password_hash($data['password'], PASSWORD_DEFAULT)]);
+    return (int)$pdo->lastInsertId();
+    }
+
+}
+function createCustomerAccount($pdo, $id){
+    $stmt = $pdo->prepare('INSERT INTO account(userId, accountType, points)VALUES(?,?,?)');
+    $stmt->execute([$id, 'Customer', 0]);
+    $stmt->fetch();
+    return (int)$pdo->lastInsertId();
+}
+
+function getCustomerAccountInfo($pdo, $id){
+    $stmt = $pdo->prepare('SELECT u.firstname, u.lastname, a.points FROM user AS u JOIN account as a ON u.userId=a.userId WHERE u.userId=?');
+    $stmt->execute([$id]);
+    $user = $stmt->fetch();
+    return $user;
+}
 
 ?>
