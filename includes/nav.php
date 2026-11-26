@@ -1,4 +1,5 @@
 <?php
+session_start();
 $role = $_SESSION['role'];
 
 $navItems = [
@@ -10,14 +11,13 @@ $navItems = [
 ];
 ?>
 
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
   <ul>
     <?php foreach($navItems as $navItem): ?>
       <?php if (in_array($role, $navItem['roles'], true)): ?>
       <li>
-      <a href="<?= htmlspecialchars($navItem['url']) ?>">
-        <?= htmlspecialchars($navItem['label']) ?> </a>
+      <a href="<?=htmlspecialchars($navItem['url']) ?>">
+        <?=htmlspecialchars($navItem['label']) ?> </a>
     </li>
     <?php endif; ?>
     <?php endforeach; ?>

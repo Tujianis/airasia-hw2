@@ -12,7 +12,8 @@ WHERE username = :username'
 $stmt->execute([$_POST['username']]);
 $user = $stmt->fetch();
 if (!$user || !password_verify($_POST['password'], $user['password'])) {
-$error = 'Invalid email or password.';
+http_response_code(405);
+exit("Incorrect Username or Password");
 } else { //If they pass the password check, get cookie, establish headers, start session
 $https = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 session_set_cookie_params(array(
