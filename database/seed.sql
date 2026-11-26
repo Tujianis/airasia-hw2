@@ -77,8 +77,8 @@ INSERT OR IGNORE INTO giftcard (
 
 INSERT OR IGNORE INTO user (
     username, password, firstName, lastName, role
-) VALUES ('bsmith', '$2y$10$7Hhf59XBnuGzBalsaENTgeaI3DxSxu2NlxhjdFSLTRm7jHYaz2K9q', 'Bob', 'Smith', 'Customer');
+) VALUES ('bsmith', '$2y$10$7Hhf59XBnuGzBalsaENTgeaI3DxSxu2NlxhjdFSLTRm7jHYaz2K9q', 'Bob', 'Smith', 'Admin');
 
 INSERT OR IGNORE INTO user (
     username, password, firstName, lastName, role
-) VALUES ('pjones', '$2y$10$EiUurQmFoBJVGJty4YblHeQRA0lFg9fmXv2rtc4pahtu2Nj7iNqZa', 'Peter', 'Jones', 'Admin');
+) VALUES ('pjones', '$2y$10$EiUurQmFoBJVGJty4YblHeQRA0lFg9fmXv2rtc4pahtu2Nj7iNqZa', 'Peter', 'Jones', 'Customer');

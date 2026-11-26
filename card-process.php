@@ -1,8 +1,13 @@
 <?php
 require_once __DIR__.'/includes/db.php';
 require_once __DIR__.'/includes/validation.php';
+require_once __DIR__.'/includes/authorization.php';
 
 if($_SERVER['REQUEST_METHOD']!=='POST'){http_response_code(405);exit('POST required');}
+if(!verifyCsrfToken()){
+    http_response_code(403);
+    exit('Invalid CSRF');
+}
 if(($_POST['form_name']??'')!=='giftcard'){http_response_code(400);exit('Invalid form');}
 $errors = validateCreate($_POST['cardName'], $_POST['cardType'], $_POST['cardValue'], $_POST['cardPoints']); 
 if(count($errors) >= 1){ http_response_code(403); exit(implode(',', $errors));} else {

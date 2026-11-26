@@ -1,5 +1,10 @@
 <?php
 require_once __DIR__.'/includes/db.php';
+require_once __DIR__.'/includes/auth.php';
+require_once __DIR__.'/includes/authorization.php';
+$user = requireLogin(openDatabase());
+requireRole($user, array('Admin'));
+
 $id=filter_input(INPUT_GET,'cardId',FILTER_VALIDATE_INT);
 if(!$id||$id<1){
     http_response_code(400);exit('Invalid ID');
@@ -15,6 +20,7 @@ require_once __DIR__.'/includes/nav.php';?>
         <button type="submit"> Previous Page </button> 
     </form>
  <form method="post" action="update-card.php?cardId=<?=$id?>">
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token'], ENT_QUOTES, 'UTF-8') ?>">
         <input type="hidden" name="cardId" value="<?=$id?>">
         <label for="cardName">Card Name</label>
         <input id="cardName" name="cardName" value="<?=escapeHtml($r['cardName'])?>" required>

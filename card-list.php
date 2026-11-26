@@ -1,6 +1,10 @@
 <?php
 require_once __DIR__.'/includes/db.php';
-$rows=findAllGiftCards(openDatabase());?>
+$rows=findAllGiftCards(openDatabase());
+require_once __DIR__.'/includes/auth.php';
+require_once __DIR__.'/includes/authorization.php';
+$user = requireLogin(openDatabase());
+requireRole($user, array('Admin', 'Customer'));?>
 <?php require_once __DIR__.'/includes/header.php';
 require_once __DIR__.'/includes/nav.php';?>
 <main class="container py-4"><h1>Gift Cards</h1>

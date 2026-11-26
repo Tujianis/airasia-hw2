@@ -1,6 +1,7 @@
 <?php
-require_once __DIR__.'/includes/header.php';?>    <div> 
-    <form action="card-list.php" method="post">
+require_once __DIR__.'/includes/header.php';?>    
+<div> 
+    <form action="authenticate.php" method="post">
         <label for="username">Username </label>
         <input id="username" name="username" required>
 

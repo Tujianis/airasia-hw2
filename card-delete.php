@@ -1,6 +1,14 @@
 <?php
 require_once __DIR__.'/includes/db.php';
+require_once __DIR__.'/includes/auth.php';
+require_once __DIR__.'/includes/authorization.php';
+$user = requireLogin(openDatabase());
+requireRole($user, array('Admin'));
+
 if($_SERVER['REQUEST_METHOD']==='POST'){
+ if(!verifyCsrfToken()){
+    
+ }
  $id=filter_input(INPUT_POST,'cardId',FILTER_VALIDATE_INT);if(!$id||$id<1){http_response_code(400);exit('Invalid ID');}
  try{$ok=deleteGiftCard(openDatabase(),$id);
  if(!$ok){http_response_code(409);

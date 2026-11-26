@@ -47,4 +47,11 @@ function deleteGiftCard($pdo, $id) {
     $stmt->execute([$id]);
     return $stmt->rowCount()===1;
 }
+function findUserById($pdo, $id) {
+    $stmt=$pdo->prepare('SELECT role, username FROM user WHERE userId=?');
+    $stmt->execute([$id]);
+    $user = $stmt->fetch();
+    return $user;
+}
+
 ?>
