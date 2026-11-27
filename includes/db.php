@@ -74,7 +74,7 @@ function createCustomerAccount($pdo, $id){
 }
 
 function getCustomerAccountInfo($pdo, $id){
-    $stmt = $pdo->prepare('SELECT u.firstname, u.lastname, a.points FROM user AS u JOIN account as a ON u.userId=a.userId WHERE u.userId=?');
+    $stmt = $pdo->prepare('SELECT u.username, u.firstName, u.lastName, a.points FROM user AS u JOIN account as a ON u.userId=a.userId WHERE u.userId=?');
     $stmt->execute([$id]);
     $user = $stmt->fetch();
     return $user;

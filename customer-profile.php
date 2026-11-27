@@ -12,14 +12,14 @@ $userData = getCustomerAccountInfo(openDatabase(), $_SESSION['user_id']);
 <main class="container py-4"><h1></h1>
 
 <dl>
-    <dt>Card Names</dt>
-        <dd><?=escapeHtml($r['cardName'])?></dd>
-    <dt>Card Type</dt>
-        <dd><?=escapeHtml($r['cardType'])?></dd>
-    <dt>Card Value</dt>
-        <dd><?=escapeHtml($r['cardValue'])?></dd>
+    <dt>User name</dt>
+        <dd><?=escapeHtml($userData['username'])?></dd>
+    <dt>First Name</dt>
+        <dd><?=escapeHtml($userData['firstName'])?></dd>
+    <dt>Last Name</dt>
+        <dd><?=escapeHtml($userData['lastName'])?></dd>
     <dt>Points</dt>
-        <dd><?=escapeHtml($r['points'])?></dd>
+        <dd><?=escapeHtml($userData['points'])?></dd>
 </dl>
 
 
