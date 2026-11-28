@@ -74,10 +74,27 @@ function createCustomerAccount($pdo, $id){
 }
 
 function getCustomerAccountInfo($pdo, $id){
-    $stmt = $pdo->prepare('SELECT u.username, u.firstName, u.lastName, a.points FROM user AS u JOIN account as a ON u.userId=a.userId WHERE u.userId=?');
+    $stmt = $pdo->prepare('SELECT u.username, u.firstName, u.lastName, a.accountId, a.points FROM user AS u JOIN account as a ON u.userId=a.userId WHERE u.userId=?');
     $stmt->execute([$id]);
     $user = $stmt->fetch();
     return $user;
+}
+function redeemCard($pdo, $cardId, $accountId, $pointsRedeemed,$newPoints){
+    try{
+        $pdo->begin_transaction();
+        $stmt = $pdo->prepare('UPDATE account SET points =? WHERE accountId =?');
+        $stmt->execute([$newPoints, $accountId]);
+
+        $stmt = $pdo->prepare('INSERT INTO redemption 
+        (date, accountId, cardId, pointsRedeemed)VALUES (?,?,?,?)');
+        $stmt->execute([date('Y-m-d H:i:s'), $accountId, $cardId, $pointsRedeemed]);
+
+        $pdo->commit();
+    }catch(Throwable $e){
+        if($pdo->inTransaction()){
+            $pdo->rollback();
+        }
+    }
 }
 
 ?>
