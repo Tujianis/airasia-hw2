@@ -68,14 +68,18 @@ function createUser($pdo, $data){
 }
 function createCustomerAccount($pdo, $id){
     $stmt = $pdo->prepare('INSERT INTO account(userId, accountType, points)VALUES(?,?,?)');
-    $stmt->execute([$id, 'Customer', 0]);
+    $stmt->execute([$id, 'Customer', 30000]);
     $stmt->fetch();
     return (int)$pdo->lastInsertId();
 }
 
 function getCustomerAccountInfo($pdo, $id){
-    $stmt = $pdo->prepare('SELECT u.username, u.firstName, u.lastName, a.accountId, a.points FROM user AS u JOIN account as a ON u.userId=a.userId WHERE u.userId=?');
-    $stmt->execute([$id]);
+    //$stmt = $pdo->prepare('SELECT u.username, u.firstName, u.lastName, a.accountId, a.points FROM user AS u JOIN account as a ON u.userId=a.userId WHERE u.userId=?');
+    $stmt = $pdo->prepare("SELECT user.username, user.firstName, user.lastName 
+    FROM user 
+    INNER JOIN account ON user.userId = account.userId WHERE user.userId=:user_id");
+
+    $stmt->execute(['user_id' => 2]);
     $user = $stmt->fetch();
     return $user;
 }

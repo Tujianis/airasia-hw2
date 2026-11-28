@@ -76,6 +76,7 @@ function validateRedemption($userPoints, $cardPoints){
     if($cardPoints > $userPoints){
         $errors[]="User does not have enough points to redeem chosen card. Please choose another card.";
     }
+    return $errors;
 }
 
 

@@ -1,18 +1,18 @@
 INSERT OR IGNORE INTO account (
     accountId, userId, accountType, points
-) VALUES (1, 1, 'customer', 0);
+) VALUES (1, 998, 'Customer', 0);
 INSERT OR IGNORE INTO account (
     accountId, userId, accountType, points
-) VALUES (2, 2, 'customer', 20);
+) VALUES (2, 999, 'Customer', 20);
 INSERT OR IGNORE INTO account (
     accountId, userId, accountType, points
-) VALUES (3, 3, 'customer', 30);
+) VALUES (3, 1000, 'Customer', 30);
 INSERT OR IGNORE INTO account (
     accountId, userId, accountType, points
-) VALUES (4, 4, 'customer', 40);
+) VALUES (4, 1001, 'Customer', 40);
 INSERT OR IGNORE INTO account (
     accountId, userId, accountType, points
-) VALUES (5, 5, 'customer', 50);
+) VALUES (5, 1002, 'Customer', 50);
 
 INSERT OR IGNORE INTO giftcard ( 
     cardId, cardName, cardType, cardValue, points
@@ -82,3 +82,8 @@ INSERT OR IGNORE INTO user (
 INSERT OR IGNORE INTO user (
     username, password, firstName, lastName, role
 ) VALUES ('pjones', '$2y$10$EiUurQmFoBJVGJty4YblHeQRA0lFg9fmXv2rtc4pahtu2Nj7iNqZa', 'Peter', 'Jones', 'Customer');
+
+INSERT OR IGNORE INTO account(
+    accountId, userId, accountType, points) VALUES (
+        6, 2, 'Customer', 300000
+);

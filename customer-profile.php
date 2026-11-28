@@ -4,9 +4,10 @@ require_once __DIR__.'/includes/nav.php';
 require_once __DIR__.'/includes/db.php';
 require_once __DIR__.'/includes/auth.php';
 require_once __DIR__.'/includes/authorization.php';
+
 $user = requireLogin(openDatabase());
 requireRole($user, array('Customer'));
-$userData = getCustomerAccountInfo(openDatabase(), $_SESSION['user_id']);
+$userData = getCustomerAccountInfo(openDatabase(), $user['userId']);
 ?>
 
 <main class="container py-4"><h1></h1>
